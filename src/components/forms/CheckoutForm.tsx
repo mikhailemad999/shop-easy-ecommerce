@@ -37,11 +37,11 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
   };
 
   // Merge the default values with any provided values
-  // Using type assertion to ensure TypeScript knows this is a complete ShippingAddress
-  const initialValues = {
+  // Using explicit type assertion to ensure TypeScript knows this is a complete ShippingAddress
+  const initialValues: ShippingAddress = {
     ...defaultShippingAddress,
     ...(defaultValues || {}),
-  } satisfies ShippingAddress;
+  } as ShippingAddress;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
