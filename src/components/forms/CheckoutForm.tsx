@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,11 +36,12 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // Create a properly typed initialValues by spreading the defaultShippingAddress first,
-  // then overriding with any provided defaultValues
-  const initialValues = {
-    ...defaultShippingAddress,
-    ...(defaultValues || {})
+  // Explicitly cast the merged object to ShippingAddress type to ensure type safety
+  const initialValues: ShippingAddress = {
+    address: defaultValues?.address ?? defaultShippingAddress.address,
+    city: defaultValues?.city ?? defaultShippingAddress.city,
+    postalCode: defaultValues?.postalCode ?? defaultShippingAddress.postalCode,
+    country: defaultValues?.country ?? defaultShippingAddress.country,
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
