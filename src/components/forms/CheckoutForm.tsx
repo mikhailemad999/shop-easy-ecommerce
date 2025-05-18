@@ -37,7 +37,7 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
   };
 
   // Properly merge defaultValues with defaultShippingAddress, ensuring all required fields exist
-  const initialValues = {
+  const initialValues: ShippingAddress = {
     address: defaultValues?.address || defaultShippingAddress.address,
     city: defaultValues?.city || defaultShippingAddress.city,
     postalCode: defaultValues?.postalCode || defaultShippingAddress.postalCode,
