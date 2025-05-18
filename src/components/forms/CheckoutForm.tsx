@@ -36,9 +36,17 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
+  // Use the provided defaultValues if available, otherwise use defaultShippingAddress
+  const initialValues: ShippingAddress = defaultValues ? {
+    address: defaultValues.address,
+    city: defaultValues.city,
+    postalCode: defaultValues.postalCode,
+    country: defaultValues.country
+  } : defaultShippingAddress;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues || defaultShippingAddress,
+    defaultValues: initialValues,
   });
 
   const handleSubmit = (data: z.infer<typeof formSchema>) => {
