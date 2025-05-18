@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -65,6 +64,16 @@ const LoginPage = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+  
+  const setDemoUserCredentials = () => {
+    form.setValue('email', 'user@example.com');
+    form.setValue('password', 'password123');
+  };
+  
+  const setDemoAdminCredentials = () => {
+    form.setValue('email', 'admin@example.com');
+    form.setValue('password', 'password123');
   };
   
   return (
@@ -166,13 +175,13 @@ const LoginPage = () => {
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <Button 
                   variant="outline" 
-                  onClick={() => form.setValue('email', 'user@example.com') && form.setValue('password', 'password123')}
+                  onClick={setDemoUserCredentials}
                 >
                   Customer
                 </Button>
                 <Button 
                   variant="outline" 
-                  onClick={() => form.setValue('email', 'admin@example.com') && form.setValue('password', 'password123')}
+                  onClick={setDemoAdminCredentials}
                 >
                   Admin
                 </Button>
