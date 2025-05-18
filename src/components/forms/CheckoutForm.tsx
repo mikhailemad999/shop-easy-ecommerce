@@ -36,8 +36,8 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // Create a properly typed initialValues object by spreading defaults first, then any provided values
-  const initialValues = {
+  // Create a properly typed initialValues object by explicitly asserting it as ShippingAddress
+  const initialValues: ShippingAddress = {
     address: defaultValues?.address || defaultShippingAddress.address,
     city: defaultValues?.city || defaultShippingAddress.city,
     postalCode: defaultValues?.postalCode || defaultShippingAddress.postalCode,
