@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -36,12 +35,11 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // Merge the default values with any provided values
-  // Using explicit type assertion to ensure TypeScript knows this is a complete ShippingAddress
-  const initialValues: ShippingAddress = {
+  // Create a properly typed initialValues by spreading the defaults first and then any provided values
+  const initialValues = {
     ...defaultShippingAddress,
     ...(defaultValues || {}),
-  } as ShippingAddress;
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
