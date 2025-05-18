@@ -28,14 +28,17 @@ interface CheckoutFormProps {
 }
 
 const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
+  // Define a default shipping address that satisfies the ShippingAddress type
+  const defaultShippingAddress: ShippingAddress = {
+    address: '',
+    city: '',
+    postalCode: '',
+    country: '',
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues || {
-      address: '',    // Non-optional value with empty string as default
-      city: '',       // Non-optional value with empty string as default
-      postalCode: '', // Non-optional value with empty string as default
-      country: '',    // Non-optional value with empty string as default
-    },
+    defaultValues: defaultValues || defaultShippingAddress,
   });
 
   const handleSubmit = (data: z.infer<typeof formSchema>) => {
