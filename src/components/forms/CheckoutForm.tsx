@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,8 +36,8 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // Create a properly typed initialValues by spreading the defaults first and then any provided values
-  const initialValues = {
+  // Explicitly create a properly typed ShippingAddress by merging the defaults with any provided values
+  const initialValues: ShippingAddress = {
     ...defaultShippingAddress,
     ...(defaultValues || {}),
   };
