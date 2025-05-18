@@ -36,12 +36,12 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // Create a properly typed merged object by first spreading the default values
-  // and then spreading any provided default values
-  const initialValues = {
+  // First create a complete shipping address with the defaults,
+  // then override with any provided values
+  const initialValues: ShippingAddress = {
     ...defaultShippingAddress,
-    ...defaultValues,
-  } as ShippingAddress;
+    ...(defaultValues || {}),
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
