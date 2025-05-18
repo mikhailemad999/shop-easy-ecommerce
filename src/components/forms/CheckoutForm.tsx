@@ -37,9 +37,11 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
   };
 
   // Properly merge defaultValues with defaultShippingAddress, ensuring all required fields exist
-  const initialValues: ShippingAddress = {
-    ...defaultShippingAddress,
-    ...defaultValues as Partial<ShippingAddress>,
+  const initialValues = {
+    address: defaultValues?.address || defaultShippingAddress.address,
+    city: defaultValues?.city || defaultShippingAddress.city,
+    postalCode: defaultValues?.postalCode || defaultShippingAddress.postalCode,
+    country: defaultValues?.country || defaultShippingAddress.country,
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
