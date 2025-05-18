@@ -36,12 +36,12 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // First create a complete shipping address with the defaults,
-  // then override with any provided values
-  const initialValues: ShippingAddress = {
+  // Merge the default values with any provided values
+  // Using type assertion to ensure TypeScript knows this is a complete ShippingAddress
+  const initialValues = {
     ...defaultShippingAddress,
     ...(defaultValues || {}),
-  };
+  } satisfies ShippingAddress;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
