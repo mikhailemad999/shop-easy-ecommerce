@@ -38,7 +38,6 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    // Use non-null assertion to tell TypeScript that we've guaranteed values
     defaultValues: defaultValues || defaultShippingAddress,
   });
 
