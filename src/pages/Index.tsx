@@ -1,9 +1,9 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import ProductList from '@/components/products/ProductList';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { getProducts } from '@/services/api';
 import { Product } from '@/types';
 import { ArrowRight, ShoppingBag, Truck, ShieldCheck, RotateCcw } from 'lucide-react';
