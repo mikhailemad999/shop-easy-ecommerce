@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,7 +24,7 @@ const formSchema = z.object({
 
 interface CheckoutFormProps {
   onSubmit: (data: ShippingAddress) => void;
-  defaultValues?: ShippingAddress;
+  defaultValues?: Partial<ShippingAddress>;
 }
 
 const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
@@ -35,8 +36,11 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
     country: '',
   };
 
-  // Use the provided defaultValues if available, otherwise use defaultShippingAddress
-  const initialValues = defaultValues || defaultShippingAddress;
+  // Merge provided defaultValues with the default shipping address
+  const initialValues: ShippingAddress = {
+    ...defaultShippingAddress,
+    ...(defaultValues || {})
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
