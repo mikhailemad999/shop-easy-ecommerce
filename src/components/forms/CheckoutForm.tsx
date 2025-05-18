@@ -31,10 +31,10 @@ const CheckoutForm = ({ onSubmit, defaultValues }: CheckoutFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues || {
-      address: '',
-      city: '',
-      postalCode: '',
-      country: '',
+      address: '',    // Non-optional value with empty string as default
+      city: '',       // Non-optional value with empty string as default
+      postalCode: '', // Non-optional value with empty string as default
+      country: '',    // Non-optional value with empty string as default
     },
   });
 
